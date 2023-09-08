@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .speaker {
+            height: 300px;
+            width: 300px;
+            background-color: aqua;
+            transition: all;
+            transition-duration: 1s;
+            font-size: 25px;
+            display: flex;
+            animation: changeColor 0.001s linear infinite;
+            justify-content: center;
+            align-items: center;
+        }
+
+        div {
+            display: flex;
+            justify-content: space-around;
+        }
+
+        .speaker:hover {
+            background-color: red;
+            cursor: pointer;
+        }
+
+        .speaker:active {
+            background-color: green;
+            color: blue;
+        }
+
+        @keyframes changeColor {
+            0% {
+                border-radius: 0%;
+                size: 20px;
+            }
+            10% {
+                border-radius: 20%;
+            }
+            20% {
+                border-radius: 40%;
+            }
+            30% {
+                border-radius: 60%;
+            }
+            40% {
+                border-radius: 80%;
+            }
+            50% {
+                border-radius: 100%;
+            }
+            60% {
+                border-radius: 80%;
+            }
+            70% {
+                border-radius: 60%;
+            }
+            80% {
+                border-radius: 40%;
+            }
+            90% {
+                border-radius: 20%;
+            }
+            100% {
+                border-radius: 0%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <div class="speaker" onmouseover="playSound('audio1')">JBL</div>
+        <div class="speaker" onmouseover="playSound('audio2')">JBL</div>
+        <div class="speaker" onmouseover="playSound('audio3')">JBL</div>
+    </div>
+    <audio id="audio1">
+        <source src="audio1.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+    <audio id="audio2">
+        <source src="audio2.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+    <audio id="audio3">
+        <source src="audio3.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+    <script>
+        var currentAudio = null;
+
+        function playSound(audioId) {
+            if (currentAudio !== null) {
+                currentAudio.pause();
+                currentAudio.currentTime = 0;
+            }
+            
+            var sound = document.getElementById(audioId);
+            sound.play();
+            currentAudio = sound;
+        }
+    </script>
+</body>
+</html>
